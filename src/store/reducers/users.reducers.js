@@ -56,8 +56,7 @@ const userReducer = (state = initialState, action) => {
                               updatedUser = {
                                 ...state,
                                 token: action.token,
-                                email: action.email,
-                                // redirectURL: action.redirectTo
+                                email: action.email
                               };
                               return updatedUser;
     case actionTypes.VALIDATE_TOKEN_FAIL: updatedUser = {

@@ -22,24 +22,21 @@ export class HomeScreen extends Component {
         if(this.props.token) {
             // Dispatch User Signout action  
             this.props.logoutUser(this.props.token);
-            // this.props.navigation.navigate('Login');
+            this.props.navigation.navigate('Login');
           }
-          console.log('token',this.props.token)
     }
-    clearAll = async () => {
-        try {
-          await AsyncStorage.clear()
-        } catch(e) {
-          // clear error
-        }
+    // clearAll = async () => {
+    //     try {
+    //       await AsyncStorage.clear()
+    //     } catch(e) {
+    //       // clear error
+    //     }
         
-        this.props.navigation.navigate('Login');
-        console.log('Done.')
-        console.log('token',this.props.token)
-      }
-    componentWillUpdate(){
-        this.clearAll();
-    }
+    //     this.props.navigation.navigate('Login');
+    //     console.log('Done.')
+    //     console.log('token',this.props.token)
+    //   }
+  
     render() {
         return (
             <View>

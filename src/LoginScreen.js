@@ -12,38 +12,22 @@ class LoginScreen extends Component {
         password: ''
        } 
     }   
-    
-    validateInputs(forForm){
-        //Empty or false inputs
-        if(this.state.user.username === "" || !this.state.user.username){
-          return false;
-        }else if(this.state.user.password === "" || !this.state.user.password){
-          return false;
-        }
-        return true;
-      }
 
-      onUserSignin = () => {
-        //TODO: Validate inputs
-        if(this.state.user.username === "" || this.state.user.password === ""){
-          //TODO: ADD ERROR DIALOG
-          Alert.alert('Fields are empty');
-        }else{
-          //Submit the form
-          let userDets = {
-            username: this.state.user.username,
-            password: this.state.user.password
-          };
-          this.props.onUserSigninSubmit(userDets);
-          {this.props.token ? this.props.navigation.navigate('Home') : null}
-        }
+    onUserSignin = () => {
+      //TODO: Validate inputs
+      if(this.state.user.username === "" || this.state.user.password === ""){
+        //TODO: ADD ERROR DIALOG
+        Alert.alert('Fields are empty');
+      }else{
+        //Submit the form
+        let userDets = {
+          username: this.state.user.username,
+          password: this.state.user.password
+        };
+        this.props.onUserSigninSubmit(userDets);
+        {this.props.token ? this.props.navigation.navigate('Home') : null}
       }
-    
-      onInputClicked = (event, forField, forForm)  => {
-        let tempUser = this.state.user;
-        tempUser[forField] = event.target.value;
-        this.setState({user: tempUser});
-      }
+    }
 
     render() {
         return (
@@ -52,12 +36,12 @@ class LoginScreen extends Component {
                 <Form>
                     <Item floatingLabel>
                         <Label>Username</Label>
-                        <Input value={this.state.user.username} onChangeText={(text) => this.setState({user: {...this.state.user, username: text}})} inputChanged={this.onInputClicked}/>
+                        <Input value={this.state.user.username} onChangeText={(text) => this.setState({user: {...this.state.user, username: text}})} />
                     </Item>
                     <Item floatingLabel last>
                         <Label>Password</Label>
                         <Input secureTextEntry value={this.state.user.password} 
-                            onChangeText={(text) => this.setState({user: {...this.state.user, password: text}})} inputChanged={this.onInputClicked} />
+                            onChangeText={(text) => this.setState({user: {...this.state.user, password: text}})} />
                     </Item>
                     <Button block success style={{ marginTop: 50 }} 
                     onPress={this.onUserSignin} >

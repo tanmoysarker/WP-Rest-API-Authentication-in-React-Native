@@ -19,8 +19,8 @@ export class SignUpScreen extends Component {
 
   }
 
-
-      insertData(){
+      insertData= () => {
+        console.log('Its a function')
         axios.post("http://192.168.0.105/wordpress/wp-json/wp/v2/users/register", this.state.user,{headers: {"Content-Type": "application/json"}})
         .then(res => {
           const data = res.data;
@@ -28,12 +28,9 @@ export class SignUpScreen extends Component {
         }).catch(error => {
           console.log(error.response)
       });
+      this.props.navigation.navigate('Login');
       }
 
-      handleSubmit(e){
-        e.preventDefault();
-        this.insertData();
-      }
 
       
   // getWPnonce(){
@@ -65,14 +62,14 @@ export class SignUpScreen extends Component {
                     </Item>
                     <Item floatingLabel>
                         <Label>Email</Label>
-                        <Input onChangeText={(text) => this.setState({user: {...this.state.user, email: text}})} value={this.state.user.email}  />
+                        <Input type='email'onChangeText={(text) => this.setState({user: {...this.state.user, email: text}})} value={this.state.user.email}  />
                     </Item>
                     <Item floatingLabel last>
                         <Label>Password</Label>
                         <Input value={this.state.user.password} onChangeText={(text) => this.setState({user: {...this.state.user, password: text}})} />
                     </Item>
                     <Button block success style={{ marginTop: 50 }} 
-                    onPress={this.handleSubmit} >
+                    onPress={this.insertData} >
                         <Text>Register</Text>
                     </Button>
                 </Form>

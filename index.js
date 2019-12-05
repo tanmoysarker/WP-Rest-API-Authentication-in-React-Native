@@ -14,11 +14,11 @@ const appReducer = combineReducers({
   const logger = (store) => {
     return next => {
       return action => {
-        console.log("Middleware dispatching ");
-        console.log(action);
+        // console.log("Middleware dispatching ");
+        // console.log(action);
         const result = next(action);
-        console.log("Middleware next state ");
-        console.log(store.getState());
+        // console.log("Middleware next state ");
+        // console.log(store.getState());
         return result;
       };
     };
